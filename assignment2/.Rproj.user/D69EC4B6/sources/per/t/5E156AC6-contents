@@ -1,0 +1,186 @@
+---
+title: 'Ass 2: Template'
+author: "Zane Gray"
+date: '`r format(Sys.Date(),format="%A, %B %d, %Y")`'
+output: 
+  html_document:
+    df_print: paged
+    fig_caption: true
+    highlights: pygments
+    number_sections: no
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE, fig.align='center'}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(magrittr)
+library(dplyr)
+library(purrr)
+library(readxl)
+crash<-read_excel("~/Dropbox/R/lab1/CRASH.xls")
+```
+#Number completed:17/17
+# Questions{}
+
+## Q 1
+a. $100\%-92.12\%=7.88$
+b. $100\%-74.55\%=25.45$
+c. $Novice$
+
+
+## Q 2
+a. $P(Positive|User)   = {P(Positive\cap User) \over P(User)}    = 50\%$
+b. $P(Positive|Nonuser)    = {P(Positive\cap Nonuser) \over P(Nonuser))}  = 1\%$
+c. $P(User|Positive)  = {P(User\cap Positive) \over( P(Positive)}   = 84.75\%$
+
+## Q 3
+###Basis:
+Starting with a set $S_1$, where$|S_1 | = n_1$, there are $(\sum_{S_{1_1}}^{n_1} i) = n_1$ possible selections. 
+
+###Inductive hypothesis:
+Assume that the number of selections for one element each from sets $\{S_1,...,S_m\}$ with $|S_i|=|n_i|$ for all valid i is $\prod_{i=1}^m n_i$.
+
+###Induction
+Do the above for $m+1$ sets. Then there are $\sum_{i=1}^{m+1} \sum_{j=1}^{s_i} j$ possible selections.$\therefore$ there are $n_{m+1}\prod_{i=1}^{m}n_i = \prod_{i=1}^{m+1}n_i$ selections by induction hypothesis $\square$
+
+## Q 4
+
+Selecting 1 element $e_1$ from a set S of size N, there is 1 possible ordering of the element, i.e. $(e_1)$
+
+
+By the product rule, the number of orderings for n distinctly different elements, $(e_1,\dots,e_n)$ of the above set can be found by treating each index as a set of size 1, and removing it from S once an element is selected. This yeilds $\prod_{i=1}^n N-i$possibilities for each element,$\therefore P_n^N={N!\over (N-n)!}$ by basic arithmetic. $\square$ 
+
+## Q 5
+
+###Basis: 
+
+Starting with 2 partitioning subsets: $S_1$ and $S_2$ where $|S_i| = n_i$ and $S_i \subseteq Q$ for all valid i, and $|Q|=N$. By definition of partitioning sets, $S_1^c =S_2$ and vice versa. Using the permutation rule, there are $P_{n_1}^N$ distinct orderings of all possible $S_1$'s. The remaining $N-n_1=n_2$ elements must be in $S_2$ by definition. There are $P_{N-n_1}^{N-n_1}=(N-n_1)!=n_2!$ permutations of these remaining elements. That there are $n_1!$ permutations on each possible $S_1$ follows WOLOG $\therefore$ the number of partitions (ie the number of possible distinct $S_1$'s in Q) is $${The\ number\ of\ possible\  permutations\ of\ size\ n_1\ on\ S \over the\ number\ of\ permutations\ of\ size\ n_1\ on\ the\ partition\ S_1} $$ 
+
+ie ${P_{n_1}^{N} \over P_{n_1}^{n_1}}$ or equivalently ${P_{n_2}^{N} \over P_{n_2}^{n_2}} \therefore The\ number\ of\ possible\ sets\ of\ 2\ partitions\ of\ Q\ is\ {N! \over n_1!n_2!}$ by algebera.
+
+###Induction hypothesis:
+
+For n partitions:$\{S_1,\dots,S_n\}$ of sizes ${n_1,\dots,n_n}$ where $bigcup_{i=1}^n S_i = Q$ and $\sum_{i=1}^n n_i = N$, the number of possible values of $\{S_1,\dots,S_n\}$ is ${N!\over\prod_{i=1}^n n_i!}$
+
+###Induction step:
+
+For $N+1$ partitions $\{S_1,\dots,S_{n+1}\}$ on Q of sizes $\{n_1,\dots,n_{n+1}\}$, the number of possible sets of n+1 partitions can be found by partitioning the set of partitions into $\{S_1,\dots,S_n\}$ and ${S_{n+1}}$. Then both the basis and the induction hypothesis can be applied yeilding ${N!\over n_{n+1}!(N-n_{n+1})!}$ and ${|N\cap S_{n+1}|\over \prod_{i=1}^n n_i!}. |Q\cap n_(n+1)| = N-n_(n+1) \therefore$ the product of the fractions is ${N!\over\prod_{i=1}^{n+1} n_i!}$, so the induction holds$\square$
+
+## Q 6
+Shown above in the basis
+
+## Q 7
+```{r t7}
+list(
+  a=c(sum(.09,.30,.37,.20,.04)),
+  b=c(sum(.2,.04)),
+  c=c(sum(.09,.3,.37))
+  )%>%t(.)%>%kable()
+```
+
+## Q 8
+There are 2 properties of a discrete random variable probability distribution:
+$$
+\begin{eqnarray}
+&0\leq& p(y)\leq 1 &&&&\forall y \in Y\\
+&\sum_{y\in Y} &p(y)=1\\
+\end{eqnarray}
+$$
+```{r t8}
+apps<-data.frame(
+  Number_of_apps = 0:20,
+  "p(Number_of_apps)" = c(
+    .17,.10,.11,.11,.10,.10,.07,
+    .05,.03,.02,.02,.02,.02,.02,
+    .01,.01,.01,.01,.01,.005,.005
+  )
+)
+kable(apps)
+apps%>%summarise(
+  sum=sum(.[2]),
+  "P>9"=(sum(.[.[1]>9,][2])),
+  mean=weighted.mean(.[[1]],.[[2]]),
+  varience=sum(21*.[2]*(1-.[2]))
+)
+  
+```
+$Number\ of\ apps\ used\ > 6$
+because cumsum passes .75 at index 7
+
+## Q 9
+```{r t9}
+asPercent<-function(n,precision=4){
+  {n*100}%>%
+    round(precision)%>%
+    paste("%")%>%
+    return()
+}
+c(
+  dbinom(10,25,.7),pbinom(5,25,.7)
+)%>%map(asPercent)%>%t%>%kable(col.names = c("a","b"))
+```
+
+_c:_  
+$\mu = np = 70\%*(25) = `r (.7*25)`$\\
+$\sigma = npq = 70\%*(30\%)*25=`r (.7*.3*25)`$
+
+_d:_  
+The mean is the expected value of the number of foreign students in a random sample of 25 recent engineering phd-earners. The standard deviation is the amount of variation as measured by the average distance from the mean of each data point.
+
+##Q 10
+${5\over 5(10!)} = {1\over 10!} \approx `r asPercent(1/factorial(10))`$  
+$\sum_{i=1}^3{50 \choose i} \approx `r asPercent(pbinom(2,50,prob=0.10))`$
+
+##Q 11
+This is a negative binomial distribution. Its probability mass function is ${y\choose y}*40\%*(60\%)^y$.
+Its expected value is $60\%$, so we'll fail during the first 2 trials more often than not, and fail the first trial $60\%$ of the time.
+```{r t11}
+  (3/5)^10%>%asPercent()
+  (1-3/5-9/25)%>%asPercent()
+```
+
+##Q 12
+```{r t12}
+mean(dhyper(0:10,8,201,10))%>%asPercent()
+dhyper(4,8,201,10)%>%asPercent()
+```
+
+##Q 13
+For poisson distributions, $\lambda = \mu = \sigma^2$, in this case $0.3$ for a 3 year span.
+This would be plausable if,for example, over t*0=60 years there was no more than 1 3-year span more than 2 standard deviations from the mean $\mu*t$
+`r dpois(0,0.3)%>%asPercent()`
+
+##Q 14
+_A:_ $\int_{-\inf}^{\inf} \big\{ {(2-y)c\  if\ y \in (0,1) \atop 0\ else}\ \ \ \ dy = \int_0^1 c(2-y) dy = 1\therefore c = 2/3$ <br><br>
+_B:_ $\big\{ {{1 if y > 1\atop 0 if y < 0}\atop t(4-t)/3}$ <br><br>
+_C:_ `r (4-.4)*.4/3`
+_D:_ `r ((4-.6)*.6-(4-.1)*.1)/3`
+
+##Q 15
+_A:_ 
+    $\mu = \int_{-5}^5 {3y(25-y^2)\over 500}\ dy = 0$  
+    $\sigma^2 = \int_{-5}^5 {3y^2(25-y^2)\over 500}\ dy -\mu^2 = 5$  <br><br>
+_B:_ 
+    Start by adjusting F to have $ p(-1/12 \leq 1 \leq 1/12) = 1$ 
+    This is acheived by multiplying by $ 432000/10799 $ to get $\mu=432000/10799*\int_{-1/12}^{1/12}  {3y(25-y^2)\over 500}\ dy = 0$  and $432000/10799*\int_{-1/12}^{1/12} {3y^2(25-y^2)\over 500}\ dy -\mu^2 = 5999/2591760$
+    <br><br>
+_C:_
+    Using a similar process we get $\mu = 0\ and\ \sigma^2 = 54020$
+    
+##Q 16
+```{r t16}
+dnorm(45,50,3.2)+pnorm(45,mean = 50, sd = 3.2, lower.tail=FALSE)
+pnorm(55,50,3.2)-dnorm(55,45,3.2)
+pnorm(52,50,3.2)-pnorm(51,50,3.2)
+```
+##Q 17
+```{r t17}
+crash$DRIVHEAD%T>%
+  {print(pnorm(700,mean(.),sd(.))-pnorm(500,mean(.,sd(.))))}%T>%
+  {print(pnorm(500,mean(.),sd(.))-pnorm(400,mean(.),sd(.)))}%T>%
+  {print(pnorm(850,mean(.),sd(.)))}%T>%{pnorm(1000,mean(.),sd(.))}%>%
+  {qnorm(.1,mean(.),sd(.))}
+```

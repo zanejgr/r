@@ -1,0 +1,10 @@
+---
+title: "Lab 9"
+author: "Zane Gray"
+date: "October 17, 2018"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+![](zgminilab 001.jpg)

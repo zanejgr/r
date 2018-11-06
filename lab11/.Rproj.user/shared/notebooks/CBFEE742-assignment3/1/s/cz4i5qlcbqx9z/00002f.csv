@@ -1,0 +1,5 @@
+"0","a<-matrix(,2,2)"
+"0","a[1,1]<-mean(phishing$INTTIME)"
+"0","a[1,2]<-sd(phishing$INTTIME)"
+"0","a[2,1]<-a[2,2]<-95"
+"0","rownames(a)<-c(""expected"",""actual"")"

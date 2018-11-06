@@ -1,0 +1,73 @@
+---
+---
+title: "ASSIGNMENT 1"
+author: "Zane Gray"
+date: "September 15, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+getwd()
+library(purrr)
+library(magrittr)
+library(knitr)
+library(data.table)
+source("myLab5.r")
+```
+
+##Task 1
+```{r t1}
+  getwd()
+```
+
+##Task 2
+```{r t2}
+  map(c(100,200,500,1000,10000),~mybin(iter=.x,n=10,p=0.7))->table
+  data.frame("actual"=table[5],"predicted"=dbinom(0:10,10,0.70))%>%t%>%kable()
+```
+
+##Task 3
+```{r t3}
+  sample(c(rep('b',8),rep('w',12)),5)
+  sample(c(rep('b',8),rep('w',12)),5,replace = TRUE)
+  
+  myhyper(iter=10000)
+  dhyper(0:5,12,8,5)
+```
+
+##Task 4
+The mysample(n,iter,time) function selects n (in this case 1000) random numbers from 1 to 10 iter (here 30) times and plots their relative frequencies, creates n multinomial dists.
+```{r t4}
+   mysample(1000,30,1) 
+```
+##Task 5
+```{r t5}
+  choose(8,4)
+  ppois(4,2,FALSE,FALSE)
+  dnbinom( 10,3,.4)
+  pbinom(3,10,.4)
+```
+
+##Task 6
+```{r t6}
+  ##myNBinom runs numTr negative binomial trials, with a success probability of urn[1]/urn[2] plotting the resulting nbinom distribution
+myNBinom = function(goal=10,urn=c(b=3,w=1),numTr = 10)
+{
+  urn = urn[]%>%urngen()
+  trialv = urn %>% paste0(collapse='') %>% rep(numTr)
+  return(trialv)
+}
+urngen = function(vec=c(1,1), b = vec[1], w = vec[2]){
+  rep('w',times = w)%>%
+    c(rep('b',times = b))%>%
+    return()
+}
+myNBinom()
+```

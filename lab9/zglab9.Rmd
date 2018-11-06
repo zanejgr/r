@@ -1,0 +1,118 @@
+---
+title: "Lab 9"
+author: "Zane Gray"
+date: "October 17, 2018"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    highlights: pygments
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+library(purrr)
+library(magrittr)
+library(stats)
+library(knitr)
+library(kableExtra)
+source("./lab9b.R")
+opts_chunk$set(echo = TRUE)
+```
+
+## Q1
+
+`r getwd()`
+
+## Q2
+
+Line A samples from the given population with replacement
+Line B forms a confidence interval by sampling means from the re-samples plus or minus alpha/2
+
+Each x must be selected with equal probability because this preserves the distribution information captured in the original sample,
+
+```{r t2}
+  set.seed(35)
+  sam=round(rnorm(20,mean=10,sd=4),2)
+  unique(sample(sam,20,replace=TRUE))
+  unique(sample(sam,20,replace=TRUE))
+  unique(sample(sam,20,replace=TRUE))
+  unique(sample(sam,20,replace=TRUE))
+  unique(sample(sam,20,replace=TRUE))
+  unique(sample(sam,20,replace=FALSE))
+  unique(sample(sam,20,replace=FALSE))
+  unique(sample(sam,20,replace=FALSE))
+  unique(sample(sam,20,replace=FALSE))
+  unique(sample(sam,20,replace=FALSE))
+  
+  
+```
+When there is no replacement, each set is the same.
+Running <code>sample(sam,21,replace=FALSE)</code> yeilds <code>Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE'</code> because it wants more things than the sample can give
+
+## Q3
+
+```{r t3}
+(list({set.seed(39); sam=rnorm(25,mean=25,sd=10)},
+         { set.seed(30); sam=rchisq(20,df=3)},
+         {set.seed(40); sam=rgamma(30,shape=2,scale=3)},
+         {set.seed(10); sam=rbeta(20,shape1=3,shape2=4)})
+ ->taskData)%T>%
+  
+  {
+    layout(matrix(c(1:4),2,2,TRUE))
+    walk(.,~myboot2(x=.,xlab="mean"))
+    map(.,~mean(.x))
+  }%>%
+  {
+    walk(.,~myboot2(x=.x,fun="var",xlab="varience",alpha=.2))
+  }
+```
+
+## Q4
+
+```{r t4}
+  myboot2(x=c(1,1,1,2,2,2,2,3,3,3,4,4),fun="median",xlab="median")%T>%
+  {hist(.$xstat)}%$%
+  kable(ci,caption = "confidence interval",col.names = "")%>%
+  kable_styling("striped","condensed")%>%
+    column_spec(1, width="5cm")
+```
+
+## Q5
+
+```{r t5}
+layout(matrix(c(1:4),2,2,TRUE))
+movm<-function(x){mean(x)/median(x)}
+walk(cross2(taskData,list(.05,.3)),~myboot2(x=c(.x[[1]]),alpha=.x[[2]],fun=movm))
+```
+
+## Q6
+```{r t6}
+layout(matrix(c(1:4),2,2,TRUE))
+walk(list({set.seed(39); sam=runif(20)},
+         { set.seed(30); sam=rexp(20)},
+         {set.seed(40); sam=rweibull(20,shape=2,scale=3)},
+         {set.seed(10); sam=rlnorm(20,3,4)}
+    ),~myboot2(x=.x,alpha=.2,xlab="mean"))%>%
+  walk(~myboot2(x=.x,alpha=.2,xlab="varience",fun="var"))
+
+```
+
+##Q7
+
+```{r t7}
+{set.seed(68); sam=rnorm(20,mean=10,sd=4)}%T>%
+  myboot2(x=.,fun="IQR",xlab = "interquartile range")%T>%
+  myboot2(x=.,fun="quantile",xlab="quantile")%>%
+  {list(
+  `myboot function`=c(myboot2(x=.,fun="mean",xlab="mean")$ci),
+  
+  `actual value`={quantile(c
+    (mean(.)+qnorm(1-.05/2)*sd(.)/sqrt(20),
+    mean(.)-qnorm(1-.05/2)*sd(.)/sqrt(20)),
+    c(0.05/2,.95+.05/2))})}%>%
+  data.frame()%>%kable()%>%
+    kable_styling("striped","condensed")%>%
+    column_spec(1, width="5cm")
+```

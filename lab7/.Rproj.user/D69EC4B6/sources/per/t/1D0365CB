@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538592049538.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1146291485",
+    "id" : "1D0365CB",
+    "lastKnownWriteTime" : 1538400710,
+    "last_content_update" : 1538400710,
+    "path" : "~/Dropbox/R/lab7/mytsim.R",
+    "project_path" : "mytsim.R",
+    "properties" : {
+        "cursorPosition" : "20,1",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

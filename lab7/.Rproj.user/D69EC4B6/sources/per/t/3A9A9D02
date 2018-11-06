@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538592050536.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3001385772",
+    "id" : "3A9A9D02",
+    "lastKnownWriteTime" : 1538400719,
+    "last_content_update" : 1538400719,
+    "path" : "~/Dropbox/R/lab7/mytsim-rmd-ready.R",
+    "project_path" : "mytsim-rmd-ready.R",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

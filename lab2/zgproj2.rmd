@@ -1,0 +1,81 @@
+---
+title: "zgproj2"
+author: "Zane"
+date: "August 27, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+getwd()
+EPAGAS=read.csv("epagas.csv")
+library(lattice)
+library(knitr)
+library(data.table)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(utils)
+library(kableExtra)
+library(magrittr)
+```
+##task 1
+```{r} 
+
+getwd()
+```
+##task 2
+```{r} 
+head(EPAGAS)
+```
+
+
+##task 3
+
+```{r t3.1}
+v = (EPAGAS$MPG)
+z = (v-mean(v))/sd(v)
+vz=data.table(v ,z)
+
+kable(vz,align='l',col.names = c("MPG","Z"))%>%
+  kable_styling("striped","condensed")%>%
+  column_spec(1, width="5cm")
+kable(data.table("standard deviation:"=sd(z),"mean:"=mean(z)))
+(v[abs(z)>3])
+(v[abs(z)>2&&abs(z)<=3])
+```
+```{r t3.2}
+mycol = ifelse(abs(z)>3, "Red",
+        ifelse(abs(z)>=2 &abs(z)<=3,"Blue", "Black"))  
+dotplot(v,col=mycol)
+```
+
+
+##task 4
+```{r t4}
+ggplot(vz,aes(v))+
+  geom_boxplot(aes(y=vz$v,fill="mpg" ),notch=TRUE)+
+  scale_fill_manual(values = c("green3"))+
+  coord_flip()+labs(title="MPG DISTRIBUTION")
+```
+The emperical rule says at least 95% of the mpg (ie 95 values) are within 2 std deviations,
+assuming unimodal distribution. 
+Actual number:
+```{r t4.2}
+c(length(v[abs(z)<2])/length(v),("Proportion"))
+c((length(z[abs(z)<2])), ("Number(by counting)"))
+```
+Emperical roughly applies because distribution is roughly unimodal
+```{r t4.3}
+ggplot(vz,aes(v))+geom_dotplot()
+
+
+```
+
+
+

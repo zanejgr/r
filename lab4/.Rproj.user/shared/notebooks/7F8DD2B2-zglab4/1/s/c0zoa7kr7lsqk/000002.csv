@@ -1,0 +1,5 @@
+"0","  quad.lm<-lm(BHDiameter~Height + I(BHDiameter^2),data=spruce)"
+"0","  quad.lm%T>%{residuals(.)->>quad.res}%>%fitted->quad.fit"
+"0","  ggplot(spruce,aes(y = Height,x=BHDiameter))+"
+"0","      geom_point() +"
+"0","      stat_smooth(method=lm, formula = y ~ x + I(x^2)) "

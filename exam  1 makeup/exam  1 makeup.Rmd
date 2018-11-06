@@ -1,0 +1,106 @@
+---
+title: "ZGMakeupTest"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+###Original score: 
+$30/100$  
+  
+
+## Q1
+A
+$$
+Y=aX+b\\
+E(Y) = E(aX+b) = E(aX)+E(b) = aE(X)+b
+$$
+
+  B
+$$
+V(Y) = V(aX + b) = E(((aX+b)-E(aX+b))^2) = E((aX+b-aE(X)-b)^2) = a^2E((X-eX)^2) = a^2V(X)
+$$
+
+C
+$$
+(i)E(-2X+3) = -2E(X)+3 = 3\\
+(ii) V(Y) = V(-2X+3) = (-2)^2(V(X)) = 16\\
+(iii)V(H) = V(3Y-2) = 3^2 V(Y) = {r 3*3*16}
+$$
+
+##Q 3
+(a.)  
+Because $M_y (t) = E(e^{yt})$, and $E(X)=\sum XE(X)$, $M_y(t)$ (where $X~Bern$), $= $
+$$
+E(e^{yt}) = \sum_ {i \in \{0,1\}} p(i)(e^{yt}) = (1-\theta) +\theta e^t = q + p{e^t}
+$$
+
+(b.)
+$$
+\mu_y = 0+\theta(1) = \theta$
+$$
+
+(c.)
+$$
+\sigma ^2 = E((Y-\mu)^2)=\theta^2(1-\theta)+\theta(1-\theta)^2=\\\theta(1-\theta)
+$$
+
+(d.)
+$$
+\dot {M}_Y (0) = pe^0 = \theta
+$$
+
+(e.)
+$$
+\ddot {M}_Y (0) - \mu_Y ^2 = \theta - \theta ^2
+$$
+
+
+##Q 4
+The mean of z is always 0,
+The varience of z is always 1
+$$
+E({{x-\mu}\over\sigma})={E(X)-\mu\over\sigma}={\mu - \mu \over \sigma}=0,
+$$
+$$
+ V({{X-\mu}\over\sigma})={\sigma^2\over\sigma^2} = 1
+$$
+$$
+\bar z = {{\sum_{i=1}^n{x - \mu_x \over n}}\over n} = \sum_{i=1}^n x-\mu_x = 0
+$$
+$$
+ s^2_z  = \sum_{x=1}^n{(Z-\bar z)^2 \over n-1} = \sum_{x=1}^n{({X-\bar x\over s})^2\over{n-1}} = {\sum_{x=1}^n {({X + \bar x})^2\over s^2_x}\over n-1} = {\sum_{x=1}^n{(X+\bar x)^2\over (n -1 )}\over {\sum_{x=1}^n{(X+\bar x)^2\over (n -1 )}}} = 1
+$$
+
+
+$$3^2 V(z) 2^2 = 36$$
+
+##Q 5
+This is a geometric distribution. 
+The probability that the first defective fuse will be one of the first 5 tested is $$\sum_{i=1}^5{p(i)} = \sum_{i=0}^4{.1(.9)^i} = .41$$
+If Y is the number of fuses tested until the first defective fuse is observed, $$\mu = p^-1 = 10\\ \sigma^2 = {1-p\over p^2} = 90\\ \sigma = \sqrt{90} = 9.49$$
+
+##Q 6
+Bayes rule for this problem in terms of $+,U,\bar U$ is 
+$$ p(U|+)={p(U)P(+|U)\over p(+)}\\
+\\ \\ \text{In general,}\\ \\
+\\p(B)=\sum{p(A_i)p(B|A_i)\over p(A_i|B)}\\ \\
+\\ \text{In this case, the function is }\\ \\
+{p(+|U) p(U)\over p(+|U) p(U) + p(+| \bar U) p(\bar U)}\\
+\\ \text{so}\\ \\ p(U|+)={(.004)(.98)\over (.004)(.98)+(1-0.97)(99.6)} 
+\approx `r 100*round(.004*.98/(.004*.98+.03*.996),4)` \%\\
+\\ \text{and }\\ \\
+p(\bar U | +) = 
+{(+|\bar U)P(\bar U)\over p(+|U)p(U) + b(+| \bar U)p(\bar u) } 
+\approx`r 100*round(.996*.03/(.004*.98+.03*.996),4)` \%\\
+$$
+
+##Q 7
+(a)$P(X=10)=0.0282$  
+(b)$P(X\leq2) = 0.0016$  
+(c)$P(X<2 = 0.001$  
+(d)$P(X>5) = `r 1-.0473`$  
+(e)$P(8\leq Y\leq 10) = `r format(round(.3^8+.3^9+.3^10,4),scientific=FALSE)`$  

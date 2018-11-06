@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537911529064.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CF728D93",
+    "lastKnownWriteTime" : 3833180308419998817,
+    "last_content_update" : 1537911529064,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "521DF168",
+        "caption" : "CRASH",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=CRASH&cache_key=521DF168",
+        "displayedObservations" : 98,
+        "environment" : "",
+        "object" : "CRASH",
+        "preview" : 0,
+        "totalObservations" : 98,
+        "variables" : 18
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

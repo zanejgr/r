@@ -1,0 +1,32 @@
+---
+title: "Lab 11"
+author: "Zane Gray"
+date: "October 17, 2018"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    highlights: pygments
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+phishing=read.csv("../lab1/phishing.csv")
+```
+
+##Q1
+$\int{e^{-x/95}\over 95}dx = e^{-x/95}+c$
+```{r t1}
+exp(-120/(95))
+qplot(phishing$INTTIME)
+a<-matrix(,2,2)
+a[1,1]<-mean(phishing$INTTIME)
+a[1,2]<-sd(phishing$INTTIME)
+a[2,1]<-a[2,2]<-95
+rownames(a)<-c("actual","expected","w")
+```
+
+
+##Q2 

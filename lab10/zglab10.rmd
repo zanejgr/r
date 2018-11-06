@@ -1,0 +1,73 @@
+---
+title: "ZGlab10"
+date: "October 17, 2018"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    highlights: pygments
+    theme: spacelab
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Q1
+```{r q1}
+source('./Lab10.R')
+source('./newtraph.R')
+library(purrr)
+getwd()
+```
+
+##Q2
+Line A of mymaxlik gets the cartesian product of the sets and puts them in a neatly formatted matrix
+Line B gets the first index of the max value from the column sums of the matrix in formed in line A.
+The liklihood of outcomes {x_1...x_8} in 8 binomial experiments with 20 trials each with probability of success p is
+$$ \prod_1^8{20\choose x_i}p^{x_i}(1-p)^{p-x_i} $$
+The R code would be
+
+<code>
+prod(dbinom(x, prob = p, size = 20))
+</code>
+So the probability for the given values is 
+```{r q2.2}
+p=seq(0.01,1,by=.01)
+plot(p,map(map(p,~dbinom(c(3,3,4,3,4,5,5,4),20,.x)),~max(.x)))
+which.max(map(map(p,~dbinom(c(3,3,4,3,4,5,5,4),20,.x)),~max(.x)))
+```
+So the max likelihood is 15%
+
+##Q3
+The graphical solution yeilds 5.61
+```{r t3}
+f<-mymaxlik(
+  x = c(4,6,7,6,5),
+  param = seq(0, 20, length = 1000),
+  lfun = logpoiss,
+  xlab = expression(lambda),
+  main = "Poisson",
+  cex.main = 2
+   
+)
+myNRML(
+  x0 = 0.99,
+  delta = 0.000001,
+  llik = function(x){logpoiss(c(4,6,7,6,5),x)},
+  xrange = c(0.01, 0.99),
+  parameter = "p"
+)
+```
+
+
+
+Algebraically, the likelihood is
+$$ \prod{e^{-\lambda}}{\lambda^y\over y!} $$
+which has max at 
+$$ \hat{L} = \hat{\lambda = `r mean(4,6,7,6,5)`}$$
+
+##Q4
+```{r t4}
+maxlikg2(c(2,6), c(4,10), lfun = logbin2())
+```
+

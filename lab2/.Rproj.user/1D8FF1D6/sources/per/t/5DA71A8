@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1535378133025.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5DA71A8",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : -2147483648,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "CAEE0A1C",
+        "caption" : "EPAGAS",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=EPAGAS&cache_key=CAEE0A1C",
+        "displayedObservations" : "100",
+        "environment" : "",
+        "object" : "EPAGAS",
+        "preview" : "0",
+        "totalObservations" : "100",
+        "variables" : "1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

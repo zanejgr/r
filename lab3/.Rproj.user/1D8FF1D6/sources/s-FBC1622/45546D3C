@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536073296309.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "45546D3C",
+    "lastKnownWriteTime" : 1536073796,
+    "last_content_update" : 1536073796,
+    "path" : "C:/Users/Adrienne/Downloads/lab3.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "67,0",
+        "notebook_format" : "html_document",
+        "scrollLine" : "57"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

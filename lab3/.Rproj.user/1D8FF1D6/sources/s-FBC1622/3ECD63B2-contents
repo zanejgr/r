@@ -1,0 +1,127 @@
+---
+---
+title: "ASSIGNMENT 1"
+author: "Zane Gray"
+date: "August 27, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+getwd()
+source("pareto.r")
+
+library(gridExtra)
+library(lattice)
+library(knitr)
+library(data.table)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(utils)
+library(kableExtra)
+library(magrittr)
+library(readxl)
+library(plotrix)
+
+ddt <- read_csv("C:/Users/Adrienne/Dropbox/R/lab1/DDT.csv")
+mtbe<- read_csv("C:/Users/Adrienne/Dropbox/R/lab1/MTBE.csv")
+SWDefects<-read_csv("C:/Users/Adrienne/Dropbox/R/lab1/SWDEFECTS.csv")
+Earthquake<-read_xls("C:/Users/Adrienne/Dropbox/R/lab1/EARTHQUAKE.xls")
+```
+------
+#Task 1
+```{r t1}
+grades=data.table(
+  "category"=c("clickers","quizzes","labs","assignments","exam 1","exam 2","projects","final exam"),
+  "weights(%)"=c(10,5,10,15,10,10,10,30)
+)
+
+kable(grades)%>%
+  kable_styling("striped","condensed")%>%
+  column_spec(1, width="5cm")
+ggplot(grades,position="fill")+
+  geom_col( aes(x="",y=grades$weights, fill = grades$category))+
+  coord_polar("y")
+```
+#Task 2
+```{r t2}
+ggplot(ddt,aes(x=WEIGHT,y=LENGTH, color=MILE))+
+  geom_point()+facet_grid(ddt$SPECIES~ddt$RIVER)
+```
+From the left 3 plots, it is shown that the left 3 rivers are either shorter than the TRM or 
+measurements were only taken upstream. The plots for LMBass and SMBuffalo were empty for all but the 
+TRM, indicating no data.
+
+Line A in the example code orders each unique MILE entry in DDT. 
+Line B lists the entries for each frequency as a vector of vectors sorted by the distance downstream
+
+The mean value of CCatfish in the FCM river is 
+```{r t2.2}  
+  ddt%>%filter(RIVER=="FCM"&&SPECIES=="CCATFISH")%>%summarise(avg=mean(DDT))
+
+```
+
+#Task 3
+A, B, D and F are quantitative. C, E and G are qualitative
+#Task 4
+Simple random sampling involves making sure each member of the population has an equal chance of being selected. Usually with a random number generator.
+
+Stratified random sampling classifies the sample into classes called strata, and samples from each strata like above, then combining them into a sample.
+
+Clustered sampling classifies and then analyses each member of the randomly selected classes
+
+Systematic sampling selects every kth item in a population for sampling.
+
+#Task 5
+```{r t5}
+  
+  mtbe[sample(dim(mtbe)[1],5,replace = FALSE),]
+  mtbe%>%na.omit%>%filter(Aquifier=="Bedrock")%>%summarise(sd(Depth))
+  
+```
+
+#Task 6
+```{r t6}
+  Earthquake[sample(dim(Earthquake)[1],5,replace = FALSE),]
+  plot(ts(Earthquake$MAGNITUDE))
+  summarise(Earthquake,median(MAGNITUDE))
+  
+```
+
+#Task 7
+The method used was stratified random sampling,
+with the population being all the fish in the Tenessee River and its tributaries.
+The qualitative variables are River and Species
+
+#Task 8
+The book uses a bar chart. The variables measured are robot type and number, with legs only being the most common type in use.
+```{r t8}
+  (rep(c("legs only","wheels only","both","neither"),c(63,20,8,15)))%>%pareto
+```
+
+#Task 9
+```{r t9}
+  dt<-data.table(product=c("windows","explorer","office"),count=c(6,12,32))
+  ggplot(dt,position="fill")+
+    geom_col(aes(x="",y=count,fill=product))+
+    coord_polar("y")
+  pareto(rep(dt$product,dt$count))
+  
+```
+
+#Task 10
+```{r t10}
+with(SWDefects,pie3D(c(sum(defect==TRUE),sum(defect==FALSE)),labels=c("true","false")))
+```
+The software is unlikely to have defects.
+#Task 11
+![](table.jpg)
+```{r t11}
+  data.table(names=1:9,)
+```

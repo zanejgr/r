@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1535377615438.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1839135268",
+    "id" : "24DDF683",
+    "lastKnownWriteTime" : 1535670834,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Adrienne/Dropbox/R/lab2/lab2.R",
+    "project_path" : "lab2.R",
+    "properties" : {
+        "cursorPosition" : "95,0",
+        "scrollLine" : "70"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

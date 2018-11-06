@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1535727106478.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "242E52C3",
+    "lastKnownWriteTime" : -1,
+    "last_content_update" : -2147483648,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "FC76A558",
+        "caption" : "SPRUCE",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=SPRUCE&cache_key=FC76A558",
+        "displayedObservations" : "36",
+        "environment" : "",
+        "object" : "SPRUCE",
+        "preview" : "0",
+        "totalObservations" : "36",
+        "variables" : "2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,1 @@
+"0","  regs$""coefficients""%>%paste(.,c('=' ,'x',""x^2""),sep="" "",collapse="" "")%>%data.frame(""equation""=.)%>%myStyle"

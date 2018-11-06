@@ -1,0 +1,4 @@
+"0","pwalk(list(mean=c(0,4,10,-2),sd=c(1,2,4,.5),lt=c(2,1,-2,-3),ut=c(4,5,10,-2), "
+"0","           lab = c(pnorm(2,0,1),pnorm(4,2,5)-pnorm(4,2,1),pnorm(10,4,10,FALSE),pnorm(),myPNCurve)))"
+"2","Error in as_mapper(.f, ...) : argument "".f"" is missing, with no default
+"

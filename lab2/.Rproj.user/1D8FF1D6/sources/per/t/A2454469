@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1535669223833.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A2454469",
+    "lastKnownWriteTime" : 3080293,
+    "last_content_update" : -2147483648,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C019433E",
+        "caption" : "vz",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=vz&cache_key=C019433E",
+        "displayedObservations" : 100,
+        "environment" : "",
+        "object" : "vz",
+        "preview" : 0,
+        "totalObservations" : 100,
+        "variables" : 3
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

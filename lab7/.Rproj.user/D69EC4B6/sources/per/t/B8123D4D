@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538592040714.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3457266410",
+    "id" : "B8123D4D",
+    "lastKnownWriteTime" : 1538400717,
+    "last_content_update" : 1538400717,
+    "path" : "~/Dropbox/R/lab7/Lab7-rmd-edition.R",
+    "project_path" : "Lab7-rmd-edition.R",
+    "properties" : {
+        "cursorPosition" : "58,0",
+        "scrollLine" : "41"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

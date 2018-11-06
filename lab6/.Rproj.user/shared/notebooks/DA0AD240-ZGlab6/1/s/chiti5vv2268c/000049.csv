@@ -1,0 +1,5 @@
+"0","#area under the curve between 2 and 5"
+"0","ggplot(df,aes(x))+"
+"0","  geom_line(aes(x=5*x,y=dgamma(5*x,3,2)))+"
+"0","  geom_area(aes(x=x*3+2,y=dgamma(x*3+2,3,2)),fill=""red"")+"
+"0","  labs(x=paste(""P(2<Y<5)="",(pgamma(2,3,2)-pgamma(5,3,2))))"

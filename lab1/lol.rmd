@@ -1,0 +1,113 @@
+---
+title: "lab1"
+author: "Zane"
+date: "August 22, 2018"
+output: 
+  html_document: 
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(gridExtra)
+library(knitr)
+```
+#Tasks
+##Task 1
+
+```{r t1}
+getwd()
+```
+##Task 2
+```{r t2,results='asis'}
+ddt=read.table("ddt.csv",sep=",",header=TRUE) 
+kable(head(ddt))
+```
+
+##Task 3
+There are 2 qualitative and 4 quantitative variables.
+There were
+  `r dim(unique(ddt[c(3)]))[1]`
+  unique species.
+```{r t3,results='asis'}
+kable(with(ddt,ddt[SPECIES=="LMBASS" & WEIGHT>800,]))
+kable(with(ddt,ddt[RIVER=="SCM" & DDT>4,]))
+```
+
+##Task 4
+```{r t4.1,results='asis'}
+data.frame(table(ddt$RIVER))
+```
+```{r t4.2}
+((ggplot(ddt,aes(RIVER))+
+  geom_bar(data=ddt,aes(x=ddt$RIVER,fill=RIVER))+
+  scale_fill_brewer(palette = "Set1")))
+```
+```{r t4.3,results='asis'}
+(riversp <- with(ddt,data.frame(table(RIVER,SPECIES))))
+```
+```{r t4.4}
+ggplot(riversp,aes(riversp$RIVER))+
+  geom_col(data=riversp,aes(x=riversp$RIVER,y=riversp$Freq,fill=riversp$SPECIES),
+           position = "dodge")+
+  scale_fill_brewer(palette = "Set1")
+```
+
+##Task 5
+```{r t5}
+ggplot(data=ddt,position="fill")+
+  geom_col( aes(x="",y=SPECIES, fill = SPECIES))+
+  coord_polar("y")+
+  geom_col(aes(x=0.3,y=SPECIES, fill = RIVER))
+
+```
+
+##Task 6
+```{r t6}
+grid.arrange(
+  
+  ggplot(data=ddt,aes(width = 1))+
+    geom_boxplot(aes(x=-1,y=ddt$DDT)),
+  ggplot(data=ddt,aes(width = 1))+
+    geom_boxplot(aes(x=0,y=ddt$WEIGHT)),
+  ggplot(data=ddt,aes(width = 1))+
+    geom_boxplot(aes(x=1,y=ddt$LENGTH)),
+  nrow=1
+)
+```
+
+##task 7
+```{r t7}
+for (v in list(c(ddt$DDT),c(ddt$SPECIES))) 
+  coplot(ddt$LENGTH~ddt$WEIGHT|v)
+```
+
+##task 8
+```{r t8}
+ggplot(ddt,aes(ddt$SPECIES))+
+  geom_boxplot(data=ddt,aes(fill=ddt$RIVER,y=ddt$WEIGHT,x=ddt$SPECIES))+
+  scale_fill_manual(
+    values=c("red","green","blue","purple"),
+    name="RIVER"
+  )+
+  labs(x=c("CCATFISH","LMBASS","SMBUFFALO"),y="WEIGHT",title="Zane Gray",sub="SPECIES")
+ggplot(ddt,aes(ddt$RIVER))+
+  geom_violin(data=ddt,aes(fill=ddt$SPECIES,y=ddt$LENGTH,x=ddt$RIVER))+
+  scale_fill_manual(
+    values=c("red","green","blue"),
+    name="SPECIES"
+  )+
+  labs(x=c("FCM","LCM","SCM","TRM"),y="LENGTH",title="Zane Gray",sub="SPECIES")
+ggplot(ddt,aes(ddt$SPECIES))+
+  geom_point(data=ddt,aes(color=SPECIES,y=ddt$LENGTH,x=ddt$WEIGHT))+
+  guides(guide_legend(title="SPECIES"))+
+  labs( x="WEIGHT",title="Zane Gray",y="LENGTH")
+```
+
+##IClicker test
+```{r IClicker, results='asis'}
+kable(data.frame((1:4),c(42.8125,376.5461,"NO",1)))
+```

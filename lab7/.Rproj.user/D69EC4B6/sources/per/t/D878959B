@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538592048549.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2268560476",
+    "id" : "D878959B",
+    "lastKnownWriteTime" : 1538597192,
+    "last_content_update" : 1538597192165,
+    "path" : "~/Dropbox/R/lab7/mylab7fns.R",
+    "project_path" : "mylab7fns.R",
+    "properties" : {
+        "cursorPosition" : "98,18",
+        "scrollLine" : "70"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

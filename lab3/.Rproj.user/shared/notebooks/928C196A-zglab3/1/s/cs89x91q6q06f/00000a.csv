@@ -1,0 +1,4 @@
+"0","sprucePlot <- ggplot(SPRUCE, aes(BHDiameter, Height))"
+"0","(scatterPlot <- sprucePlot+"
+"0","  geom_point(color = ""blue"", fill = ""blue"", shape = 21, size = 2.1)+"
+"0","  coord_cartesian(xlim = c(0, 1.1 * max(SPRUCE$BHDiameter), ylim = c(0, 1.1 * max(SPRUCE$Height)))))"

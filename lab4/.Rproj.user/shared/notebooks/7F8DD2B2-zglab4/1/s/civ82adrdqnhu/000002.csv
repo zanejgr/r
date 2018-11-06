@@ -1,0 +1,1 @@
+"0","  spruce%T>%trendscatter(x=.$Height,y=.$BHDiameter,f=0.5)%>%lm()->spruce.lm"

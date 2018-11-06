@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538436811679.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2704850364",
+    "id" : "C9F2309A",
+    "lastKnownWriteTime" : 1538440790,
+    "last_content_update" : 1538440790563,
+    "path" : "~/Dropbox/R/lab6/ZGlab6.Rmd",
+    "project_path" : "ZGlab6.Rmd",
+    "properties" : {
+        "cursorPosition" : "37,85",
+        "last_setup_crc32" : "A96CD2252b6aacff",
+        "scrollLine" : "8",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

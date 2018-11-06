@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538592044238.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "160714763",
+    "id" : "F6D6D0AD",
+    "lastKnownWriteTime" : 1538400706,
+    "last_content_update" : 1538400706,
+    "path" : "~/Dropbox/R/lab7/Lab7-1.R",
+    "project_path" : "Lab7-1.R",
+    "properties" : {
+        "cursorPosition" : "89,1",
+        "scrollLine" : "61"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

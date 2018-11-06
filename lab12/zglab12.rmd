@@ -1,0 +1,26 @@
+---
+
+title: "Lab 12"
+author: "Zane Gray"
+date: "October 17, 2018"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    highlights: pygments
+    theme: spacelab
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("./Lab12.R")
+```
+
+##Q2
+```{r t2}
+for(i in 22:26){
+  t.test(x1,i)
+}
+```

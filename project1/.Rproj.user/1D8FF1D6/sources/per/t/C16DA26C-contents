@@ -1,0 +1,46 @@
+---
+---
+title: "LAB 6"
+author: "Zane Gray"
+date: "September 24, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+getwd()
+library(magrittr)
+library(purrr)
+```
+
+##Task 1
+```{r t1}
+  getwd()
+```
+
+##Task 2
+```{r t2}
+
+myDCurve<-function(mean=0,sd=1,lb=mean-3*sd,ub=mean+3*sd)
+{val<-curve(dnorm(x, mean,sd),xlim=c(lb,ub))
+  val
+  return(val)
+}
+
+myPNCurve<-function(mean=0,sd=1,lt=-999,ut=999){
+  myDCurve(mean,sd)
+  seq(lt,ut,length=100000)%>%
+  polygon(x=c(lt,.,ut),y=c(0,dnorm(.,mean,sd),0),col="Red")
+}
+
+layout(matrix(1:4, nr=2,nc=2))
+walk2(c(10,10,5,5),c(4,2,10,.5),myDCurve)
+layout(matrix(1:4, nr=2,nc=2))
+pwalk(list(mean=c(1,4,10,-2),sd=c(1,2,4,.5),lt=c(2,1,-999,-3),ut=c(999,5,10,-2)),myPNCurve)
+```

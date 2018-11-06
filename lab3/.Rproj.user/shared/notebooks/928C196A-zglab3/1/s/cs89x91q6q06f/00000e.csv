@@ -1,0 +1,2 @@
+"0","for(i in c(0.5, 0.6, 0.7))"
+"0","  trendscatter(Height~BHDiameter, f = i, data = SPRUCE, main = paste(""f: "", as.character(i)))"

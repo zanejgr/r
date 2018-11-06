@@ -1,0 +1,6 @@
+"0","list({set.seed(39); sam=rnorm(25,mean=25,sd=10)},"
+"0","         { set.seed(30); sam=rchisq(20,df=3)},"
+"0","         {set.seed(40); sam=rgamma(30,shape=2,scale=3)},"
+"0","         {set.seed(10); sam=rbeta(20,shape1=3,shape2=4)})%T>%"
+"0","  map(~myboot2(x=.x))%>%"
+"0","  map(~kable(mean(.x)),caption=""actual means"")"

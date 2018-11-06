@@ -1,0 +1,38 @@
+---
+title: "Lab 7"
+author: "Zane Gray"
+date: "October 1, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("C:/Users/Adrienne/Dropbox/R/lab7/mylab7fns.R")
+```
+
+## Q2
+```{r t2 }
+mychisim(n1=10,sigma1 = 10, iter = 1500, mean1 = 20)
+```
+
+## Q3
+
+```{r t3}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+

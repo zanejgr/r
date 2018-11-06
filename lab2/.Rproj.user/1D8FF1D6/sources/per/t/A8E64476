@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1535481197000.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1645551288",
+    "id" : "A8E64476",
+    "lastKnownWriteTime" : 1535141722,
+    "last_content_update" : 1535141722,
+    "path" : "C:/Users/Adrienne/Dropbox/wk1-histogram-readxls.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "146,40",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

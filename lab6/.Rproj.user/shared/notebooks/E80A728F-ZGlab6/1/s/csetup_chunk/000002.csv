@@ -1,0 +1,24 @@
+"0","library(grid)"
+"0","library(gridExtra)"
+"0","library(purrr)"
+"0","library(magrittr)"
+"2","
+Attaching package: ‘magrittr’
+
+"
+"2","The following object is masked from ‘package:purrr’:
+
+    set_names
+
+"
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","myPNCurve<-function(mean=0,sd=1,lt=-999,ut=999){"
+"0","  myDCurve(mean,sd)"
+"0","  seq(lt,ut,length=100000)%>%"
+"0","  polygon(x=c(lt,.,ut),y=c(0,dnorm(.,mean,sd),0),col=""Red"")"
+"0","}"
+"0","myDCurve<-function(mean=0,sd=1,lb=mean-3*sd,ub=mean+3*sd)"
+"0","{val<-curve(dnorm(x, mean,sd),xlim=c(lb,ub))"
+"0","  val"
+"0","  return(val)"
+"0","}"

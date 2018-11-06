@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537824187173.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1925016689",
+    "id" : "C887ECBF",
+    "lastKnownWriteTime" : 1537826088,
+    "last_content_update" : 1537826088917,
+    "path" : "~/Dropbox/R/assignment2/Ass2-template.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "22,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

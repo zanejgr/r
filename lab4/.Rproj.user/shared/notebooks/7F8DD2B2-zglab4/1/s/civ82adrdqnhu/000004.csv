@@ -1,0 +1,2 @@
+"0","  spruce.lm%T>%{residuals(.)->>height.res}%>%fitted->height.fit"
+"0","  qplot(x=height.res,y=height.fit)"

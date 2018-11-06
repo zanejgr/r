@@ -1,0 +1,107 @@
+---
+---
+title: "ASSIGNMENT 1"
+author: "Zane Gray"
+date: "September 15, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+getwd()
+library(gridExtra)
+library(lattice)
+library(knitr)
+library(data.table)
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(utils)
+library(kableExtra)
+library(magrittr)
+library(readxl)
+library(plotrix)
+library(s20x)
+spruce <- read_csv("C:/Users/Adrienne/Dropbox/R/lab1/SPRUCE.csv")
+```
+------
+##Task 1
+```{r t1}
+  getwd()
+```
+
+##Task 2
+```{r t2}
+  tail(spruce)
+```
+
+##Task 3
+```{r t3}
+  spruce%T>%trendscatter(x=.$Height,y=.$BHDiameter,f=0.5)%>%lm()->spruce.lm
+  spruce.lm%T>%{residuals(.)->>height.res}%>%fitted->height.fit
+  qplot(x=height.res,y=height.fit)
+  trendscatter(x=height.res,y=height.fit)
+```
+There is little pattern in the residuals vs fit plot
+```{r t3.2}
+  spruce.lm%T>%plot%>%normcheck(,shapiro.wilk=TRUE)
+  summary(spruce.lm)
+```
+The P-value is big, so the null-hypothesis is accepted (in this case, that the residuals are normally distributed around 0.)
+Given this, and assuming that the shapes of spruces aren't affected by measurement, we can conclude that there is a correlation between
+the height and diameter. The r-squared of the model is low though, so we can't use the simple regression linear model to make 
+predictions of one value given the other.
+
+##Task 4
+```{r t4}
+  quad.lm<-lm(BHDiameter~Height + I(BHDiameter^2),data=spruce)
+  quad.lm%T>%{residuals(.)->>quad.res}%>%fitted->quad.fit
+  ggplot(spruce,aes(y = Height,x=BHDiameter))+
+      geom_point() +
+      stat_smooth(method=lm, formula = y ~ x + I(x^2)) 
+  quad.lm%T>%plot%>%normcheck(,shapiro.wilk=TRUE)
+```
+
+The P-value is much higher, so this is an even better estimate of the slope.
+Compare the Multiple R-squared of 0.6569 and Adjusted R-squared of 0.6468 in the old model to the new one below
+
+##Task 5
+```{r t5}
+  myStyle=function(k){kable(k,format="html",align='l')%>%
+    kable_styling("striped","condensed")%>%
+    column_spec(1, width="5cm")
+  }
+  
+  quad.lm%T>%{print(summary(.))}%T>%ciReg->regs
+  regs$"coefficients"%>%data.frame(value=.,"beta-hat subscript"=0:2)%>%myStyle
+  regs$"coefficients"%>%paste(.,c('=' ,'x',"x^2"),sep=" ",collapse=" ")%>%data.frame("equation"=.)%>%myStyle
+  map(list(spruce.lm,quad.lm),predict,{c(15,18,20)%>%data.frame(Height=.,BHDiameter=.)})%>%
+    data.frame("LINEAR MODEL PREDICTIONS"=.[[1]],"QUADRATIC MODEL PREDICTIONS"=.[[2]])%>%select(3:4)%>%myStyle
+  
+```
+
+We see that about 98% of samples will fit into the new one. This model is ideal for predictions, and it can better explain the relationship between height and diameter than the first. Additionally, there is no significant change in the difference between the multiple and ajusted r-squared, meaning the model is not overfitted.
+
+AnoVa tells us that the residual sum of squares is much much lower for the quadratic model as well, at ~15 vs ~271
+```{r t5.2}
+  anova(spruce.lm,quad.lm)
+  anova(quad.lm)
+```
+
+The total sum of squares for both models is 519, and their residual sums of squares are ~271 and ~15.
+This means that the MSS's are 248 and 504 respectively. In any case, (TSS-MSS)/RSS = 1
+
+##Task 6
+```{r t6}
+  cooks20x(quad.lm)
+  quad2.lm<-lm(BHDiameter~Height + I(BHDiameter^2),data=spruce[-18,])
+  summary(quad2.lm)
+  summary(quad.lm)
+```
+A cooks plot shows the effect that a single observation has on the overall model, IE it helps detect outliers.
+The value of the bar is the effect that the observation has on the your confidence interval. Notice the residuals with absolute values closer to zero when the extreme outlier observation 18 is removed, as well as higher R-squared and p-values.

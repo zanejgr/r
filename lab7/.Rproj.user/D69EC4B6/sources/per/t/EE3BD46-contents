@@ -1,0 +1,29 @@
+---
+title: "Lab 7"
+author: "Zane Gray"
+date: "October 1, 2018"
+output: html_document
+fig_caption: yes
+keep_md: yes
+number_sections: yes
+toc: yes
+toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("./mylab7fns.R")
+```
+
+## Q5
+The function simulates the students T with $v = {(\bar Y_1+ \bar Y_2)-(\mu_1-\mu_2) \over S_p \sqrt{{1\over n _1} + {1 \over n_2}} } $ statistic from a single population.
+
+The lines
+```{r eval = FALSE}
+spsq=((n1-1)*ssq1 + (n2-1)*ssq2)/(n1+n2-2) # pooled s squared
+w=((ybar1-ybar2)-(mean1-mean2))/sqrt(spsq*(1/n1+1/n2))#sigma1=sigma2,  Chi square stat
+```
+evaluate the statistic.
+
+## Q6
+The assumptions are that the samples are independant and taken at random from 2 normally distributed populations.

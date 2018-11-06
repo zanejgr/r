@@ -1,0 +1,81 @@
+---
+title: "Lab 11"
+author: "Zane Gray"
+date: "October 17, 2018"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    highlights: pygments
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(magrittr)
+library(dplyr)
+phishing=read.csv("../lab1/phishing.csv")
+```
+###7/16 questions completed
+##Q1
+The formula $\int{e^{-x/95}\over 95}dx = e^{-x/95}+c$ yeilds the probability of interarrival time x.
+Using the definite integral yeilds a probability of `r 100*exp(-120/95)%>%round(.,digits=4)`%
+
+```{r t1}
+t.test(pexp(phishing$INTTIME,rate = 1/95),pexp(rexp(267)))
+```
+The confidence interval is very small compared to the varience, so the interarrival time is very likely to have an exponential sample distribution
+
+
+##Q2 
+for a gamma random variable, the mean and median are $\alpha\beta$ and $\alpha\beta^2$ respectively. Here, they are $\mu= `r 3*.07`$ and $\sigma^2 = `r 3*.07*.07`$  
+The interval $\mu\pm 3*\sigma$ (the 95% confidence interval by Chebyshev's rule) is (`r 3*.07-3*sqrt(3*.07*.07)%>%round(.,4)`,`r 3*.07+3*sqrt(3*.07*.07)%>%round(.,4)`). This makes the all-time record flood level of .60 million cubic feet per second an extreme outlier.
+
+##Q3
+```{r t3}
+
+df<-data.frame(
+  A=c(4,8,pgamma(1,shape = 2,scale = 2)),
+  B=c(4,16,pgamma(1,shape = 1, scale = 4)),
+  names=c("mean","st dev","p(Y<1)"),
+  row.names = "names")
+df%>%
+kable(col.names=c("Formula A","Formula B"))%>%
+  kable_styling("striped","condensed")
+```
+Formula B has a higher probability after 1 minute.
+
+##Q4
+```{r t4}
+pweibull(2,4,2)
+qweibull(0.50,4,2)
+```
+$\sigma = `r (4^(1/2) *(gamma((2+2)/2)-(gamma((2+1)/2))^2))^0.5`$
+$\mu\pm 2\sigma = (`r 1.77246-2*.9265`,`r 1.77246+2*.9265`)$  
+The lower end of the interval is outside the support for a weibull, so the probability that Y is in the range is $P(Y\leq \mu+2\sigma)$ = `r dweibull(1.77246+2*.9265,4,2)`  
+The likelihood of a washer needing its first repair after 6 years is `r pweibull(6,4,2,lower.tail=FALSE)`
+
+##Q5
+$\mu = `r 2/(2+9)`$  
+$\sigma^2 = `r 2*9/((2+9)^2 * (2+9+1))`$  
+`r 1-pbeta(0.40,2,9)`  
+`r pbeta(.1,2,9)`
+
+##Q6
+$\alpha = 2, \beta = 16$  
+$\mu = `r 4*(gamma(3/2))`$  
+$\sigma^2 = `r 16*(gamma(2)-(gamma(3/2))^2)`$  
+$\mu+x\sigma=6$ at $x = 1.333$
+
+##Q7
+$P(x,y)={1\over 6*6} = 1/36$  
+$p_1(x)=p(x)=1/6$  
+$p_2(y)=p(y)=1/6$  
+$p_1(x|y)={1/36\over 1/6} = 1/6$  
+$p_2(y|x)={1/36\over 1/6} = 1/6$  
+Because $p(x)=p(x|y)$ and $p(y)=p(y|x)$ we can conclude that x and y are independant
+
+##Q8

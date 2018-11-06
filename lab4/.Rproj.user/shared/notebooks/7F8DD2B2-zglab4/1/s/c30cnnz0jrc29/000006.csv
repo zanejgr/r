@@ -1,0 +1,2 @@
+"0","  map(list(spruce.lm,quad.lm),predict,{c(15,18,20)%>%data.frame(Height=.,BHDiameter=.)})%>%"
+"0","    data.frame(""LINEAR MODEL PREDICTIONS""=.[[1]],""QUADRATIC MODEL PREDICTIONS""=.[[2]])%>%select(3:4)%>%myStyle"

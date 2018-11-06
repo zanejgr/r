@@ -1,0 +1,19 @@
+---
+title: "zglab8"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source('./lab8.r')
+```
+
+## Q2
+Line A takes n*iter random samples from  a uniform distribution
+Line B organises them into n random variables of iter possible values
+Line c sums over the columns(corresponding to the values of each random variable)
+Line D evaluates 10 random variables with 1000 values using the function
+
+```{r t2}
+myclt(n=10,iter = 10000)
+```

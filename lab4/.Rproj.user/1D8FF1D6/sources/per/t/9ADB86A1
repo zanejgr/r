@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537054632101.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3158555775",
+    "id" : "9ADB86A1",
+    "lastKnownWriteTime" : 1537088045,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Adrienne/Downloads/lab4.r",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "133,68",
+        "scrollLine" : "133"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

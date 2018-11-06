@@ -1,0 +1,21 @@
+"0","(spruce.lm <- lm(Height~BHDiameter, data = SPRUCE))"
+"1","
+Call:
+"
+"1","lm(formula = Height ~ BHDiameter, data = SPRUCE)"
+"1","
+
+"
+"1","Coefficients:
+"
+"1","(Intercept)  "
+"1"," BHDiameter  "
+"1","
+"
+"1","     9.1468  "
+"1","     0.4815  "
+"1","
+"
+"1","
+"
+"0","(lmPlot <- scatterPlot + geom_smooth(method = lm, se = FALSE))"
